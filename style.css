@@ -1,0 +1,149 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #0f172a; /* Dark background */
+            color: #e2e8f0; /* Light text */
+        }
+
+        /* Custom CSS for typing effect cursor */
+        .typing-text::after {
+            content: '|';
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #cbd5e1 } /* Light grey cursor */
+        }
+
+        /* Fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Simple button hover animation */
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #6366f1; /* Slightly darker purple on hover */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); /* Subtle shadow */
+        }
+
+        /* Timeline specific styles */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #4f46e5; /* Indigo line */
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column; /* Default for mobile */
+            text-align: center; /* Default for mobile */
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item-content {
+            background-color: #1e293b; /* Darker slate */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            text-align: left; /* Content text alignment */
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: #a78bfa; /* Light purple */
+            margin-bottom: 10px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 15px; /* Adjust to center vertically with content */
+            width: 16px;
+            height: 16px;
+            background: #6366f1; /* Purple dot */
+            border: 2px solid #a78bfa; /* Lighter purple border */
+            border-radius: 50%;
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Desktop/Tablet styles for timeline */
+        @media (min-width: 768px) {
+            .timeline-item {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-item-content {
+                margin-right: 30px;
+                order: 1; /* Content on left */
+            }
+
+            .timeline-item:nth-child(even) .timeline-item-content {
+                margin-left: 30px;
+                order: 2; /* Content on right */
+            }
+
+            .timeline-item-content {
+                width: calc(50% - 30px); /* Half width minus margin */
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot {
+                left: calc(50% - 8px); /* Align dot to left of line */
+                transform: translateX(-50%);
+            }
+
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: calc(50% - 8px); /* Align dot to right of line */
+                transform: translateX(-50%);
+            }
+
+            .timeline-item-date-wrapper {
+                width: 50%;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-item-date-wrapper {
+                order: 2; /* Date on right */
+            }
+
+            .timeline-item:nth-child(even) .timeline-item-date-wrapper {
+                order: 1; /* Date on left */
+            }
+        }
